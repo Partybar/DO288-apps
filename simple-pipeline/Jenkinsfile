@@ -29,7 +29,7 @@ pipeline {
 			}
 		} 
 
-        stage('manual approval') {
+        stage('manual approval stage 3') {
 			steps {
 				timeout(time: 60, unit: 'MINUTES') {
 				input message: "Move to stage 3?"
@@ -41,7 +41,7 @@ pipeline {
                 sh 'echo hello from stage 3!. This is the second last stage...'
             }
 		}
-		stage('manual approval') {
+		stage('manual approval stage 4') {
 			steps {
 				timeout(time: 60, unit: 'MINUTES') {
 				input message: "Move to stage 4?"
