@@ -24,23 +24,34 @@ pipeline {
         }
 
         stage('stage 2') {
-      	  steps {
-    	    sh 'echo hello from stage 2!'
-  	  }
- 	} 
+			steps {
+				sh 'echo hello from stage 2!'
+			}
+		} 
 
         stage('manual approval') {
-  	  steps {
-    	    timeout(time: 60, unit: 'MINUTES') {
-      	      input message: "Move to stage 3?"
-	    }
-  	  }
+			steps {
+				timeout(time: 60, unit: 'MINUTES') {
+				input message: "Move to stage 3?"
+				}
+			}
         } 
         stage('stage 3') {
             steps {
-                sh 'echo hello from stage 3!. This is the last stage...'
+                sh 'echo hello from stage 3!. This is the second last stage...'
             }
+		stage('manual approval') {
+			steps {
+				timeout(time: 60, unit: 'MINUTES') {
+				input message: "Move to stage 4?"
+				}
+			}
         }
+		stage('stage 4') {
+            steps {
+                sh 'echo hello from stage 4!. This is the last stage...'
+            }
+		}
 
     }
 }
